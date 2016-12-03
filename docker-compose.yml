@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+ nginx:
+  depends_on: [node]
+  image: nginx:latest
+  ports:
+   #host:container
+   #so map 8080 on the host to port 80 on nginx container
+   #this is so that nginx will take incoming port 8080 traffic as 80 and fwd it to
+   #the node container which should be listening on 8080
+   - 8080:80
+  volumes:
+   - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+ 
+
+ node:
+  build: ./docker/node/
+  expose:
+   # expose 8080 on the node container
+   - 8080
+  volumes:
+   - .:/app
+
+ db:
+  image: postgres:latest
+  ports: 
+   - 5432:5432
+  volumes:
+    - ./db/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    - ./db/data:/data/postgres
