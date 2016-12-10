@@ -1,6 +1,7 @@
-"use strict"; 
+"use strict";
 
 /*Routing Dependencies*/
+
 let express = require('express'),
     router = express.Router();
 
@@ -10,5 +11,11 @@ let models = require('../models');
 
 /*Models*/
 let User = models.User;
+let Cadet = models.Cadet;
+
+/*Routes*/
+router.get('/import', function(req,res){
+	console.log("invoked");
+})
 
 module.exports = router;

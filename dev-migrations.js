@@ -67,5 +67,5 @@ function truncateTables() {
 }
 
 function errorHandler(err){
-	console.err(err);
+	console.log(err);
 }

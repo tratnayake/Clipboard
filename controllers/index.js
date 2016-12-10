@@ -10,6 +10,7 @@ let path = require('path');
 router.use('/users', require('./users'));
 
 //Cadets
+router.use('/cadets', require('./cadets'));
 
 //Ranks
 

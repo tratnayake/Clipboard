@@ -1,4 +1,5 @@
 module.exports = {
+	"JWT_secret": process.env.JWT_secret,
     "development": {
         "hostname": "db",
         "username": process.env.DB_USERNAME,
