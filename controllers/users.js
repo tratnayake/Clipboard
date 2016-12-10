@@ -2,7 +2,7 @@
 
 /*Routing Dependencies*/
 let express = require('express'),
-    router = express.Router();
+    controller = express.Router();
 
 /*Dependencies*/
 let bcrypt = require('bcryptjs');
@@ -20,7 +20,7 @@ let User = models.User;
 //TODO: Registration Route
 
 
-router.post('/login', async(function(req,res,next){
+controller.post('/login', async(function(req,res,next){
 	try{
 		var token = login(req.body.email,req.body.password);
 		res.send(token).status(200);
@@ -38,7 +38,7 @@ router.post('/login', async(function(req,res,next){
 * @param {String} password
 * @return {String} token - used for future API transactions
 **/
-router.login = function(email,password){
+controller.login = function(email,password){
 	//1. Check if the values are present, if not fail
 	if (email === undefined){
 		throw({status: 400, message: "Email address not defined"});
@@ -82,4 +82,4 @@ router.login = function(email,password){
 	}
 }
 
-module.exports = router;
+module.exports = controller;
