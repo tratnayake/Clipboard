@@ -4,9 +4,9 @@ module.exports = function(sequelize, DataTypes) {
   var Cadet = sequelize.define("Cadet",
     {
     //Table columns 
-      UID: {type: DataTypes.INTEGER, primaryKey: true},
-      firstName: { type: DataTypes.STRING, allowNull: false },
-      lastName: { type: DataTypes.STRING, allowNull: false },
+      UID: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+      firstName: { type: DataTypes.STRING, allowNull: false, unique:'compositeIndex' },
+      lastName: { type: DataTypes.STRING, allowNull: false, unique: 'compositeIndex' },
       // phoneNumber: {type: DataTypes.STRING, allowNull: false},
       level: {type: DataTypes.INTEGER, allowNull: false},
     },
@@ -25,21 +25,11 @@ module.exports = function(sequelize, DataTypes) {
           Cadet.belongsToMany(models.Event, { through: models.Events_Cadets })
         }
       },
-      hooks:{
-        afterCreate: function(cadet,options){
-          //console.log("After Create Fired!");
-        },
-        afterBulkCreate: function(cadets,options){
-          //logger.info(cadets.length + " cadets bulk created");
-        },
-        afterUpdate: function(cadet, options){
-          //console.log("After Update fired!@");
-        }
-      },
+      hooks:{},
       timestamps: true,
       paranoid: true,
     } 
-  )
+  );
 
   return Cadet;
 };

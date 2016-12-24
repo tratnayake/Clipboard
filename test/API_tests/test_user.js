@@ -31,7 +31,6 @@ switch(process.env.ENV){
 		break;
 }
 
-console.log(mainUrl);
 let credentials = {email: "thilina.ratnayake1@gmail.com", password:"testPassword"};
 
 
@@ -41,17 +40,17 @@ describe('Registration Function', function(){
 	before(async(function(){ 
 		//Truncate & Run default migration
 		let result = await(migrations.defaultMigration());
-	}))
+	}));
 
 	afterEach(async(function(){ 
 		//Truncate & Run default migration
 		let result = await(migrations.defaultMigration());
-	}))
+	}));
 
 	after(async(function(){ 
 		//Truncate & Run default migration
 		let result = await(migrations.defaultMigration());
-	}))
+	}));
 
 	describe('User Log-In', function(){
 

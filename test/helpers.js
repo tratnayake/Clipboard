@@ -12,20 +12,20 @@ helpers.generateCadets = async(function(number,random,groups){
 	var orgGroups = ["HQ", "Hornet", "Vampire", "Zulu", "Nighthawk", "Polaris"];
 	var trgGroups = [1,2,3,4,5];
 	
-	for (var i = 1; i < number; i++) {
+	for (var i = 0; i < number; i++) {
 		var cadet = {
 			"Rank": ranks.randomElement(),
 			//"phoneNumber": 6042700403,
 			"Last Name": "TestLastName_ " + i,
 			"First Name": "FirstTest_" + i,
 			"Level": trgGroups.randomElement(),
-		}
+		};
 
 		if(random){
-			cadet.orgGroup = orgGroups.randomElement();
+			cadet["Org Group"] = orgGroups.randomElement();
 		}
 		else{
-			cadet.orgGroup = groups.randomElement();
+			cadet["Org Group"] = groups.randomElement();
 		}
 
 		cadets.push(cadet);
@@ -40,6 +40,6 @@ helpers.generateCadets = async(function(number,random,groups){
 //HelperFunctions
 Array.prototype.randomElement = function () {
     return this[Math.floor(Math.random() * this.length)]
-}
+};
 
 module.exports = helpers;

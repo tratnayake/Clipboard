@@ -40,7 +40,7 @@ app.use(function (err, req, res, next) {
 	//console.log(err);
    if (err.status && err.message){
    	console.log(err);
-   	res.status(err.status).send(err.message);
+   	res.status(err.status).json(err.message);
    }
   // set locals, only providing error in development
   // res.locals.message = err.message;
