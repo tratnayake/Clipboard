@@ -1,4 +1,4 @@
 export ENV=TEST
-export DB_USER=clipboard_docker
+export DB_USERNAME=clipboard_docker
 export DB_PASSWORD=clipboard_docker
 export DB_NAME=clipboard_docker

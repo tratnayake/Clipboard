@@ -8,28 +8,19 @@ let should = chai.should();
 let expect = chai.expect();
 let request = require('supertest');
 let bcrypt = require('bcryptjs');
-let migrations = require('../dev-migrations');
+let migrations = require('../../dev-migrations');
 let Q = require("q");
 let date = require('date.js');
 var async = require('asyncawait/async');
 var await = require('asyncawait/await');
 
 /*Models*/
-let models = require('../models');
+let models = require('../../models');
 let Rank = models.Rank;
 let User = models.User;
 let Staff = models.Staff;
 let token;
-let mainUrl;
-
-switch(process.env.ENV){
-	case "development":
-		mainUrl = "http://localhost";
-		break;
-	case "local_dev":
-		mainUrl = "http://localhost:8080"
-		break;
-}
+let mainUrl = process.env.ENDPOINT;
 
 let credentials = {email: "thilina.ratnayake1@gmail.com", password:"testPassword"};
 
@@ -73,7 +64,7 @@ describe('Registration Function', function(){
 				let res = await(request(mainUrl)
 					.post('/users/login')
 					.send(inputs)
-					.expect(400))
+					.expect(400));
 
 				//console.log(res);
 			})
@@ -175,19 +166,18 @@ describe('Registration Function', function(){
 					{
 						where: {email: inputs.email}
 					}
-				))
+				));
 
 				let res = await(request(mainUrl)
 					.post('/users/login')
 					.send(inputs)
-					.expect(200))
+					.expect(200));
 
 				let result = res.body;
 				(result).should.include.keys(['token'])
 			})
 		);
-	})
-
+	});
 	// describe('User Sign-Up', function(){
 			
 	// 	it('Should allow the creation of a new user with the right information', Q.async(function*(){

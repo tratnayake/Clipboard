@@ -22,7 +22,7 @@ let User = models.User;
 
 controller.post('/login', async(function(req,res,next){
 	try{
-		var token = login(req.body.email,req.body.password);
+		var token = controller.login(req.body.email,req.body.password);
 		res.send(token).status(200);
 	}
 	catch(e){
@@ -80,6 +80,6 @@ controller.login = function(email,password){
 	else{
 		throw({status: 401, message: "Verification incomplete"});
 	}
-}
+};
 
 module.exports = controller;

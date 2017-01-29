@@ -21,16 +21,9 @@ let Rank = models.Rank;
 let User = models.User;
 let Staff = models.Staff;
 let token;
-let mainUrl;
+let mainUrl = process.env.ENDPOINT;
 
-switch(process.env.ENV){
-    case "development":
-        mainUrl = "http://localhost";
-        break;
-    case "local_dev":
-        mainUrl = "http://localhost:8080";
-        break;
-}
+
 
 let credentials = {email: "thilina.ratnayake1@gmail.com", password:"testPassword"};
 
@@ -41,6 +34,7 @@ describe('Cadets Import Function', function() {
     before(async(function () {
         //Truncate & Run default migration
         let result = await(migrations.defaultMigration());
+        console.log(result);
     }));
 
     afterEach(async(function () {

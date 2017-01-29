@@ -150,12 +150,12 @@ describe('Login', function(){
 				{
 					where: {email: email}
 				}
-			))
+			));
 
 			try{ 
 				var token = login(email,password);
-				console.log(token);
-				token.should.exist
+				//console.log(token);
+				token.should.exist;
 			}
 			catch(e){
 				//console.log(e);
