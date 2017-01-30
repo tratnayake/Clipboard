@@ -30,6 +30,36 @@ controller.post('/import', async(function(req,res,next){
 	}
 }));
 
+controller.post('/barcodes', async(function(req,res,next){
+	try{
+		var cadets = await(Cadet.findAll(
+			{//Where the UID is in the list given
+				where:{
+					UID: {
+						$in: req.body
+					},
+					//Not been deleted at yet
+                    deletedAt: {
+                        $eq: null
+                    }
+            	},
+				//Return UID, last name, first name
+                attributes: ['UID', 'lastName', 'firstName'],
+                include:
+                	[
+                		{model: Rank, attributes: ['name']},
+                		{model: orgGroup, attributes: ['name']}
+                	],
+                raw: true
+			}
+		));
+        res.status(200).json(cadets);
+	}
+	catch(e){
+		next(e);
+	}
+}));
+
 
 //Error handling
 process.on('unhandledRejection', err => {throw err; });
